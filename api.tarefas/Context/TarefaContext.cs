@@ -1,13 +1,13 @@
 ﻿using api.tarefas.Modelos;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.tarefas;
+namespace api.tarefas.Context;
 
-public class TarefaContext:DbContext
+public class TarefaContext : DbContext
 {
     public TarefaContext()
     {
-        
+
     }
 
     public DbSet<Tarefa> Tarefas { get; set; }
