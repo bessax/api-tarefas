@@ -14,6 +14,33 @@ async Task ConsultaTarefas()
     {
         Console.WriteLine(item);
     }
+
+}
+
+async Task DeleteTarefa()
+{
+    var url = "http://localhost:5273/api/tarefa/1";
+    var response = await client.DeleteAsync(url);
+    var resultado = await response.Content.ReadAsStringAsync();
+    Console.WriteLine(resultado);
+}
+
+async Task AtualizaTarefa()
+{
+    var url = "http://localhost:5273/api/tarefa/1";
+
+    var tarefaDTO = new TarefaDTO()
+    {
+        Id = Guid.NewGuid(),
+        Descricao = "Tarefa de Teste Atualizada",
+        Nome = "Teste Atualizado"
+    };
+
+    var content = await client.PutAsJsonAsync<TarefaDTO>(url, tarefaDTO);
+
+    var resultado = await content.Content.ReadAsStringAsync();
+
+    Console.WriteLine(resultado);
 }
 
 async Task CadastraTarefa()
